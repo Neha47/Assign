@@ -12,6 +12,10 @@ app.use(cors({
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+import {middleware} from './middlewares/authMiddleware.js';
+import {todoRouter} from './routes/todoRoutes.js';
+app.use('/todos', middleware, todoRouter);
+
 export const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -28,5 +32,5 @@ export const db = mysql.createConnection({
   });
 
 
-import {router} from './route.js'; 
+import {router} from './routes/userRoutes.js'; 
 app.use("/u", router);
