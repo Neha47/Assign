@@ -8,7 +8,7 @@ export default function TodoForm(){
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         if (title) {
             dispatch(addTodo(title));
             setTitle('');

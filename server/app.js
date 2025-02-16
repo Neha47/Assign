@@ -34,3 +34,6 @@ export const db = mysql.createConnection({
 
 import {router} from './routes/userRoutes.js'; 
 app.use("/u", router);
+
+
+import './scripts/createTables.js';
