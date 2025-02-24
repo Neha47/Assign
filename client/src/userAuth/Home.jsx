@@ -6,7 +6,7 @@ import TodoList from '../components/TodoList';
 export default function Home() {
     if(!localStorage.getItem("token")){
         alert("You need to login first");
-        window.location.href = "/login";
+        window.location.href = "/";
     }
     return (
         <Provider store={store}>

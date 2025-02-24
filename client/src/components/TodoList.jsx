@@ -19,7 +19,7 @@ export default function TodoList() {
         {todos.length > 0 ? (
           todos.map((todo) => (
             <li
-              key={todo.id}
+              key={todo._id}
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 transition hover:bg-gray-100"
             >
               <div className="flex-1">
@@ -28,21 +28,21 @@ export default function TodoList() {
                 </span>
                 <span
                   className={`block sm:inline text-sm font-semibold mt-1 sm:mt-0 sm:ml-3 ${
-                    todo.status === 1 ? "text-green-500" : "text-yellow-500"
+                    todo.status ? "text-green-500" : "text-yellow-500"
                   }`}
                 >
-                  {todo.status === 1 ? "✅ Completed" : "⌛ Pending"}
+                  {todo.status ? "✅ Completed" : "⌛ Pending"}
                 </span>
               </div>
               <div className="flex gap-2 mt-3 sm:mt-0">
                 <button
-                  onClick={() => dispatch(updateTodo(todo.id))}
+                  onClick={() => dispatch(updateTodo(todo._id))}
                   className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition"
                 >
                   Update
                 </button>
                 <button
-                  onClick={() => dispatch(deleteTodo(todo.id))}
+                  onClick={() => dispatch(deleteTodo(todo._id))}
                   className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 transition"
                 >
                   Delete
