@@ -61,13 +61,7 @@ export const updateTodo = async (req, res) => {
       { $set: { status: !todo.status } },
       { new: true } // returns the updated document
     );
-    console.log(updatedTodo);
-    
-    //await Todo.updateOne({ _id: id }, { $set: { status: !todo.status } });
-    console.log(todo.status);
-    //todo.status = !todo.status;
     console.log("status updated");
-    //await todo.save();
     console.log("updated todo");
     res.json({ message: "Task updated", todo: updatedTodo });
   } catch (err) {
