@@ -1,5 +1,4 @@
 import Todo from "../models/todoModel.js";
-import mongoose from "mongoose";
 
 export const getTodos = async (req, res) => {
   console.log("Asked for todos");

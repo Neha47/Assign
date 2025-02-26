@@ -2,6 +2,8 @@ import { Provider } from 'react-redux';
 import {store} from '../redux/store';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
+import {jwtDecode} from "jwt-decode";
+import { useEffect } from 'react';
 
 export default function Home() {
     const token = localStorage.getItem("token");
@@ -22,6 +24,34 @@ export default function Home() {
         localStorage.removeItem("username");
         window.location.href = "/";
     };
+
+    useEffect(() => {
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                const currentTime = Math.floor(Date.now() / 1000);
+    
+                if (decodedToken.exp < currentTime) {
+                    alert("Session expired. Please log in again.");
+                    handleLogout();
+                } else {
+                    const remainingTime = (decodedToken.exp - currentTime) * 1000;
+                    const logoutTimer = setTimeout(() => {
+                        alert("Session expired. Please log in again.");
+                        handleLogout();
+                    }, remainingTime);
+    
+                    return () => clearTimeout(logoutTimer);
+                }
+            } catch (error) {
+                console.error("Invalid token", error);
+                handleLogout();
+            }
+        } else {
+            window.location.href = "/";
+        }
+    }, [token]);
+    
 
     return (
         <Provider store={store}>

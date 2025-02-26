@@ -7,7 +7,8 @@ export const middleware  = (req, res, next) => {
     try {
         // const verified = jwt.verify(token, 'JWT_SECRET');
         // if(!verified) return res.status(401).json({ message: 'Access Denied' });
-        const user = jwt.decode(token);
+        //const user = jwt.decode(token);
+        const user = jwt.verify(token, process.env.JWT_SECRET);
         req.id = user.id;
         console.log(user.id);
         // req.users = verified;
