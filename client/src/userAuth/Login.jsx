@@ -39,6 +39,7 @@ export default function Login() {
             console.log(response.data);
             setApiResponse(response.data);
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("username", response.data.username);
             navigate("/home");
           } catch (err) {
             console.error(err);

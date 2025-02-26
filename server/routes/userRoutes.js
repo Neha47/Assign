@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
         expiresIn: "3h",
       });
       console.log(token);
-      return res.status(200).json({ message: "Login successful", token });
+      return res.status(200).json({ message: "Login successful", token , email: user.email, username: user.username});
     } catch (error) {
       if (error instanceof z.ZodError) {
         console.log("error", error.errors);

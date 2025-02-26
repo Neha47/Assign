@@ -38,7 +38,7 @@ export default function SignUp() {
             const response = await axios.post("http://localhost:5000/u/signup", {username: user.fullname, email: user.email, password: user.password});
             console.log(response.data);
             setApiResponse(response.data);
-            navigate("/login");
+            navigate("/");
           } catch (err) {
             console.error(err);
             setErrors({ api: "Failed to sign up. Please try again." });
